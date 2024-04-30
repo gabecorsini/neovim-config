@@ -6,5 +6,5 @@ I've made a few adjustments to accomodate my personal style and coding needs.
 Link to his repo fromt he video [here](https://github.com/ThePrimeagen/init.lua)
 
 ### Changelog
-[c993443](https://github.com/corsinitech/neovim-config/commit/679bde52bb7b86f6a08be2ee8217e8de053fc4a3) - Added/Updated Readme
-[e6b8571](https://github.com/corsinitech/neovim-config/commit/e6b8571eddae4fbdc6984104fb3b1032f186dc69) - Initial Commit
+- [c993443](https://github.com/corsinitech/neovim-config/commit/679bde52bb7b86f6a08be2ee8217e8de053fc4a3) - Added/Updated Readme
+- [e6b8571](https://github.com/corsinitech/neovim-config/commit/e6b8571eddae4fbdc6984104fb3b1032f186dc69) - Initial Commit
