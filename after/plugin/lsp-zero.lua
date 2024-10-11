@@ -19,7 +19,7 @@ end)
 
 require('mason').setup({})
 require('mason-lspconfig').setup({
-	ensure_installed = {'bicep', 'powershell_es'},
+	ensure_installed = {'bicep', 'powershell_es', 'python'},
 	handlers = {
 		lsp_zero.default_setup,
 	},
