@@ -1,5 +1,5 @@
 vim.g.mapleader = " "
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
+vim.keymap.set("n", "<leader>pv", ":Neotree filesystem toggle left<CR>")
 
 vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
 
