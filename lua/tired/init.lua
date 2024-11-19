@@ -1,31 +1,29 @@
-require("tired.set");
-require("tired.remap");
-
+require("tired.set")
+require("tired.remap")
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
-    vim.fn.system({
-        "git",
-        "clone",
-        "--filter=blob:none",
-        "https://github.com/folke/lazy.nvim.git",
-        "--branch=stable", -- latest stable release
-        lazypath,
-    })
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+    local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+    local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+    if vim.v.shell_error ~= 0 then
+        vim.api.nvim_echo({
+            { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+            { out,                            "WarningMsg" },
+            { "\nPress any key to exit..." },
+        }, true, {})
+        vim.fn.getchar()
+        os.exit(1)
+    end
 end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
     {
         'nvim-telescope/telescope.nvim',
-        tag = '0.1.5',
-        -- or                              , branch = '0.1.x',
         dependencies = { 'nvim-lua/plenary.nvim' }
     },
-    { 'rose-pine/neovim',                 name = 'rose-pine' },
+    { "catppuccin/nvim",                  name = "catppuccin", priority = 1000 },
     { 'nvim-treesitter/nvim-treesitter',  build = ":TSUpdate" },
     { 'theprimeagen/harpoon' },
-    { 'mbbill/undotree' },
-    { 'tpope/vim-fugitive' },
     { 'williamboman/mason.nvim' },
     { 'williamboman/mason-lspconfig.nvim' },
     { 'VonHeikemen/lsp-zero.nvim',        branch = 'v3.x' },
@@ -33,6 +31,4 @@ require("lazy").setup({
     { 'hrsh7th/cmp-nvim-lsp' },
     { 'hrsh7th/nvim-cmp' },
     { 'L3MON4D3/LuaSnip' },
-    { 'm4xshen/autoclose.nvim' },
-    { "catppuccin/nvim", name = "catpuccin", priority = 1000 },
 })
