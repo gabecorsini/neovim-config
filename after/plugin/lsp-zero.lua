@@ -19,7 +19,7 @@ end)
 
 require('mason').setup({})
 require('mason-lspconfig').setup({
-	ensure_installed = {'bicep', 'powershell_es', 'python'},
+	ensure_installed = {'bicep', 'powershell_es', 'jedi_language_server'},
 	handlers = {
 		lsp_zero.default_setup,
 	},
@@ -42,3 +42,4 @@ local bicep_lsp_bin = "C:\\Users\\GabeCorsini\\.vscode\\extensions\\ms-azuretool
 require'lspconfig'.bicep.setup{
     cmd = {"dotnet", bicep_lsp_bin };
 }
+
