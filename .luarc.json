@@ -1,0 +1,8 @@
+{
+    "diagnostics.globals": [
+        "result",
+        "util",
+        "make_cmd",
+        "vim"
+    ]
+}

@@ -19,6 +19,7 @@ return {
 		lazy = false,
 		config = function()
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
+			local os_name = vim.loop.os_uname().sysname
 
 			local lspconfig = require("lspconfig")
 			lspconfig.lua_ls.setup({
@@ -36,12 +37,24 @@ return {
 			lspconfig.cssls.setup({
 				capabilities = capabilities,
 			})
-			lspconfig.powershell_es.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.bashls.setup({
-				capabilities = capabilities,
-			})
+			if os_name == "Windows_NT" then
+				lspconfig.powershell_es.setup({
+					capabilities = capabilities,
+					bundle_path = "C:\\Users\\GabeCorsini\\Documents\\PowerShellEditorServices\\PowerShellEditorServices",
+					filetypes = { "ps1" },
+					on_new_config = function(new_config, _)
+						local bundle_path = new_config.bundle_path
+						new_config.cmd = make_cmd(bundle_path)
+					end,
+					root_dir = function(fname)
+						return util.find_git_ancestor(fname) or vim.fn.getcwd()
+					end,
+				})
+			else
+				lspconfig.bashls.setup({
+					capabilities = capabilities,
+				})
+			end
 
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
 			vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
