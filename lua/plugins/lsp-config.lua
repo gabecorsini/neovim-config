@@ -11,7 +11,7 @@ return {
 		lazy = false,
 		opts = {
 			auto_install = true,
-			ensure_installed = { "lua_ls", "ts_ls", "html", "tailwindcss", "cssls", "bashls" },
+			ensure_installed = { "lua_ls", "ts_ls", "html", "cssls", "bashls" },
 		},
 	},
 	{
@@ -29,9 +29,6 @@ return {
 				capabilities = capabilities,
 			})
 			lspconfig.ts_ls.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.tailwindcss.setup({
 				capabilities = capabilities,
 			})
 			lspconfig.cssls.setup({
