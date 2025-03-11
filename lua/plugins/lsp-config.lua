@@ -11,7 +11,7 @@ return {
         lazy = false,
         opts = {
             auto_install = true,
-            ensure_installed = { "lua_ls", "jedi_language_server", "powershell_es" },
+            ensure_installed = { "lua_ls", "intelephense", "powershell_es", "html", "cssls"},
         },
     },
     {
@@ -27,18 +27,18 @@ return {
             lspconfig.html.setup({
                 capabilities = capabilities,
             })
-            lspconfig.ts_ls.setup({
-                capabilities = capabilities,
-            })
             lspconfig.cssls.setup({
-                capabilities = capabilities,
-            })
-            lspconfig.jedi_language_server.setup({
                 capabilities = capabilities,
             })
             lspconfig.powershell_es.setup({
               cmd = {'pwsh', '-NoLogo', '-NoProfile', '-Command', "C:\\Users\\gabec\\AppData\\Local\\nvim-data\\mason\\packages\\powershell-editor-services\\PowerShellEditorServices\\Start-EditorServices.ps1"}
-
+            })
+            lspconfig.intelephense.setup({
+                capabilities = capabilities,
+                on_attach = on_attach,
+                init_options = {
+                    licenceKey = "00VJDKYRDRJPCF0",
+                }
             })
             vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
             vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
